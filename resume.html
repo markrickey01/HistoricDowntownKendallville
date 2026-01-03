@@ -163,15 +163,15 @@
             <div class="card" style="height: 100%;">
               <div class="skill-item">
                 <div class="skill-info"><span>Operating Models</span><span>95%</span></div>
-                <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
+                <div class="bar-bg"><div class="bar-fill" data-width="95%"></div></div>
               </div>
               <div class="skill-item">
                 <div class="skill-info"><span>Program Execution</span><span>92%</span></div>
-                <div class="bar-bg"><div class="bar-fill" style="width: 92%;"></div></div>
+                <div class="bar-bg"><div class="bar-fill" data-width="92%"></div></div>
               </div>
               <div class="skill-item">
                 <div class="skill-info"><span>Crisis Comms</span><span>88%</span></div>
-                <div class="bar-bg"><div class="bar-fill" style="width: 88%;"></div></div>
+                <div class="bar-bg"><div class="bar-fill" data-width="88%"></div></div>
               </div>
               <div class="flow">
                 <div class="flow-node">Strategy</div><div class="arrow">→</div>
@@ -276,27 +276,37 @@
       setVars(window.scrollY / (document.documentElement.scrollHeight - window.innerHeight));
     });
 
-    // KPI Counter
+    // Observer for KPI Counter and Skill Bars
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const target = +entry.target.getAttribute('data-val');
-          let count = 0;
-          const inc = target / 60;
-          const update = () => {
-            count += inc;
-            if (count < target) {
-              entry.target.innerText = Math.ceil(count);
-              requestAnimationFrame(update);
-            } else { entry.target.innerText = target; }
-          };
-          update();
+          // Animate Numbers
+          if (entry.target.classList.contains('kpi-num')) {
+            const target = +entry.target.getAttribute('data-val');
+            let count = 0;
+            const inc = target / 60;
+            const update = () => {
+              count += inc;
+              if (count < target) {
+                entry.target.innerText = Math.ceil(count);
+                requestAnimationFrame(update);
+              } else { entry.target.innerText = target; }
+            };
+            update();
+          }
+
+          // Animate Skill Bars (Wait for Scroll)
+          if (entry.target.classList.contains('bar-fill')) {
+            entry.target.style.width = entry.target.getAttribute('data-width');
+          }
+
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.5 });
 
-    document.querySelectorAll('.kpi-num').forEach(n => observer.observe(n));
+    // Attach observer to both numbers and bars
+    document.querySelectorAll('.kpi-num, .bar-fill').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
