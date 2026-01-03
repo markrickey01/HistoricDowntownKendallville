@@ -150,3 +150,55 @@
     color: var(--muted2);
     font-size: 12px;
 }
+/* High-End Reveal Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Interactive Operating Rhythm Artifact */
+.rhythm-graphic {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  position: relative;
+}
+.node {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+  display: grid; place-items: center;
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 2;
+}
+.node:hover, .node.active {
+  background: var(--accent);
+  border-color: transparent;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+}
+.line-connector {
+  flex-grow: 1;
+  height: 1px;
+  background: var(--border);
+  margin: 0 -5px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Dynamic KPI Counter Style for Teasers */
+.teaser-kpi {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--accent);
+  display: block;
+}
