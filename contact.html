@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Contact Mark L. Rickey — Direct Engagement" />
+  <title>Contact — Mark L. Rickey</title>
+  
+  <style>
+    :root {
+      --bg: #07070A;
+      --accent: #3b82f6;
+      --card: rgba(255,255,255,.05);
+      --border: rgba(255,255,255,.10);
+      --muted: rgba(255,255,255,.72);
+      --muted2: rgba(255,255,255,.60);
+      --text: rgba(255,255,255,.92);
+      --max: 800px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text); font-family: ui-sans-serif, system-ui, sans-serif; line-height: 1.45; overflow-x: hidden; }
+
+    /* Interactive Background Logic */
+    .fx { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .9; }
+    .fx::after { content: ""; position: absolute; inset: -20%; background: conic-gradient(from var(--rot, 200deg) at var(--mx, 50%) var(--my, 30%), hsla(215, 88%, 62%, .14), hsla(255, 88%, 62%, .1), hsla(215, 88%, 62%, .14)); mix-blend-mode: screen; filter: blur(26px); }
+
+    /* Navigation */
+    .nav { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(12px); background: rgba(7, 7, 10, 0.7); border-bottom: 1px solid var(--border); }
+    .nav .wrap { max-width: 1080px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .brand { color: white; text-decoration: none; font-weight: 700; font-size: 14px; }
+
+    /* Layout */
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 60px 20px; }
+    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    .header { margin-bottom: 40px; }
+    h1 { font-size: 42px; letter-spacing: -1.5px; margin: 0 0 10px; }
+    .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: .2em; color: var(--accent); font-weight: 700; display: block; margin-bottom: 10px; }
+
+    /* Interaction Cards */
+    .contact-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 32px; transition: 0.3s; }
+    .card:hover { border-color: var(--accent); background: rgba(59, 130, 246, 0.03); }
+    
+    .btn-large { display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: white; margin-bottom: 12px; padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 16px; transition: 0.3s; }
+    .btn-large:hover { background: var(--accent); border-color: transparent; transform: scale(1.02); }
+    .btn-label { font-weight: 700; font-size: 18px; }
+    .btn-sub { font-size: 12px; color: var(--muted2); }
+    .btn-large:hover .btn-sub { color: white; opacity: 0.8; }
+
+    .protocol-list { list-style: none; padding: 0; font-size: 14px; color: var(--muted); }
+    .protocol-list li { margin-bottom: 12px; display: flex; gap: 12px; align-items: flex-start; }
+    .protocol-list li::before { content: "→"; color: var(--accent); font-weight: 900; }
+
+    footer { text-align: center; padding: 40px 0; font-size: 12px; color: var(--muted2); }
+  </style>
+</head>
+<body>
+  <div class="fx" id="fx"></div>
+
+  <nav class="nav">
+    <div class="wrap">
+      <a class="brand" href="index.html">← MARK RICEY</a>
+      <div style="font-size: 11px; color: var(--muted2); text-transform: uppercase; letter-spacing: 1px;">Engagement Protocol</div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="header reveal">
+      <span class="eyebrow">Direct Contact</span>
+      <h1>Let’s build systems that outlast the cycle.</h1>
+      <p class="muted">I prefer direct, high-signal communication. If you are reaching out regarding a project or leadership role, please see the engagement framework below.</p>
+    </section>
+
+    <div class="contact-grid">
+      <div class="card reveal" style="transition-delay: 0.1s;">
+        <a href="mailto:markrickey01@gmail.com" class="btn-large">
+          <div>
+            <div class="btn-label">markrickey01@gmail.com</div>
+            <div class="btn-sub">Primary channel for briefs and proposals</div>
+          </div>
+          <span>↗</span>
+        </a>
+        <a href="https://www.linkedin.com/in/markrickey01" target="_blank" class="btn-large">
+          <div>
+            <div class="btn-label">LinkedIn Professional</div>
+            <div class="btn-sub">Engagement and networking</div>
+          </div>
+          <span>↗</span>
+        </a>
+      </div>
+
+      <div class="card reveal" style="transition-delay: 0.2s;">
+        <h3 style="margin-top: 0;">Inquiry Framework</h3>
+        <p class="muted2" style="font-size: 13px;">To ensure a productive initial conversation, please consider including:</p>
+        <ul class="protocol-list">
+          <li><strong>The Objective:</strong> What specific outcome is the organization currently failing to hit?</li>
+          <li><strong>The Constraints:</strong> What are the primary blockers (Technical, Political, or Resource-based)?</li>
+          <li><strong>The Timeline:</strong> What does success look like in the first 90 days?</li>
+        </ul>
+      </div>
+
+      <div class="card reveal" style="transition-delay: 0.3s; background: rgba(59, 130, 246, 0.05);">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div class="eyebrow" style="margin: 0;">Quick Bio</div>
+            <p style="margin: 8px 0 0; font-size: 13px; color: var(--muted);">Master of Public Administration (MPA) [cite: 121] and DoD Veteran with an active Secret Clearance[cite: 25]. Specialized in secure digital transformation and civic operating models[cite: 24, 45].</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      © <span id="y"></span> Mark L. Rickey • Engagement Baseline: Steady & Observant.
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Reveal Elements
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Interactive Background (Mouse drift)
+    window.addEventListener("pointermove", (e) => {
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      document.documentElement.style.setProperty("--mx", x + "%");
+      document.documentElement.style.setProperty("--my", y + "%");
+      document.documentElement.style.setProperty("--rot", (x + y) + "deg");
+    });
+  </script>
+</body>
+</html>
