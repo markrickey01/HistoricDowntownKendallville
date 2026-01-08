@@ -282,3 +282,16 @@ code, pre{
   color: var(--accent);
   display: block;
 }
+/* Global typography enforcement (no HTML changes needed) */
+h1 { font-family: var(--font-display); letter-spacing: var(--tracking-tight); }
+h2 { font-family: var(--font-display); letter-spacing: var(--tracking-tight); }
+h3 { font-family: var(--font-display); letter-spacing: var(--tracking-tight); }
+
+p, li, .muted, .muted2 { font-family: var(--font-body); }
+
+.teaser-kpi, .kpi-num { font-family: var(--font-display); }
+.label, .mini, .eyebrow { 
+  font-family: var(--font-body);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
