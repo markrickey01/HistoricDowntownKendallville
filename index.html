@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Consulting-grade portfolio — proof over promises." />
   <title>Mark L. Rickey — Portfolio</title>
-  
+
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 
   <style>
-    :root {
+    :root{
       --bg: #07070A;
       --accent: #3b82f6;
       --card: rgba(255,255,255,.05);
@@ -24,53 +24,84 @@
       --pad2: 22px;
     }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text); font-family: ui-sans-serif, system-ui, sans-serif; line-height: 1.45; overflow-x: hidden; }
-
-    /* Reveal animations on scroll */
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal.active { opacity: 1; transform: translateY(0); }
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; margin: 0; background: var(--bg); color: var(--text); line-height: 1.45; overflow-x: hidden; }
 
     /* Premium interactive background */
-    .fx { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .9; }
-    .fx::before { content: ""; position: absolute; inset: -10%; background: radial-gradient(900px 520px at 18% 12%, rgba(255,255,255,.1), transparent 60%), linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.92)); transform: translate3d(var(--gX,0px), var(--gY,0px), 0); transition: filter .2s ease; }
-    .fx::after { content: ""; position: absolute; inset: -20%; background: conic-gradient(from var(--rot, 200deg) at var(--mx, 50%) var(--my, 30%), hsla(var(--h1, 215), 88%, 62%, .14), hsla(var(--h2, 255), 88%, 62%, .1), hsla(var(--h1, 215), 88%, 62%, .14)); mix-blend-mode: screen; filter: blur(26px); transform: translate3d(calc(var(--gX,0px) * -0.6), calc(var(--gY,0px) * -0.6), 0); }
+    .fx{ position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .9; }
+    .fx::before{
+      content: "";
+      position: absolute;
+      inset: -10%;
+      background:
+        radial-gradient(900px 520px at 18% 12%, rgba(255,255,255,.1), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.92));
+      transform: translate3d(var(--gX,0px), var(--gY,0px), 0);
+      transition: filter .2s ease;
+    }
+    .fx::after{
+      content: "";
+      position: absolute;
+      inset: -20%;
+      background: conic-gradient(from var(--rot, 200deg) at var(--mx, 50%) var(--my, 30%),
+        hsla(var(--h1, 215), 88%, 62%, .14),
+        hsla(var(--h2, 255), 88%, 62%, .1),
+        hsla(var(--h1, 215), 88%, 62%, .14)
+      );
+      mix-blend-mode: screen;
+      filter: blur(26px);
+      transform: translate3d(calc(var(--gX,0px) * -0.6), calc(var(--gY,0px) * -0.6), 0);
+    }
 
     /* Navigation */
-    .nav { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(10px); background: rgba(0,0,0,.42); border-bottom: 1px solid var(--border); }
-    .nav .wrap { max-width: var(--max); margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; color: var(--text); }
-    .logo { width: 34px; height: 34px; border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,.05); display: grid; place-items: center; }
-    .navlinks { display: flex; gap: 6px; }
-    .navlinks a { color: var(--muted); text-decoration: none; font-size: 13px; padding: 8px 10px; border-radius: 12px; transition: 0.2s; }
-    .navlinks a:hover { background: rgba(255,255,255,.06); color: var(--text); }
+    .nav{ position: sticky; top: 0; z-index: 10; backdrop-filter: blur(10px); background: rgba(0,0,0,.42); border-bottom: 1px solid var(--border); }
+    .nav .wrap{ max-width: var(--max); margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .brand{ display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; color: var(--text); }
+    .logo{ width: 34px; height: 34px; border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,.05); display: grid; place-items: center; }
+    .logo img{ width: 24px; border-radius: 6px; display: block; }
+    .navlinks{ display: flex; gap: 6px; }
+    .navlinks a{ color: var(--muted); text-decoration: none; font-size: 13px; padding: 8px 10px; border-radius: 12px; transition: 0.2s; }
+    .navlinks a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
 
     /* High-end Buttons */
-    .btn { border: 1px solid var(--border); background: rgba(255,255,255,.05); color: var(--text); padding: 9px 12px; border-radius: 14px; text-decoration: none; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s; }
-    .btn:hover { background: rgba(255,255,255,.1); transform: translateY(-2px); }
-    .btn.primary { background: var(--accent); border-color: transparent; font-weight: 600; }
+    .btn{ border: 1px solid var(--border); background: rgba(255,255,255,.05); color: var(--text); padding: 9px 12px; border-radius: 14px; text-decoration: none; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s; }
+    .btn:hover{ background: rgba(255,255,255,.1); transform: translateY(-2px); }
+    .btn.primary{ background: var(--accent); border-color: transparent; font-weight: 600; }
 
     /* Layout & Cards */
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
-    .grid { display: grid; gap: 14px; }
-    .two { grid-template-columns: 1.25fr .75fr; }
-    .three { grid-template-columns: repeat(3, 1fr); }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 26px; transition: 0.3s; }
-    .card .in { padding: var(--pad2); }
-    .sep { height: 1px; background: var(--border); margin: 12px 0; }
-    
-    /* Interactive Rhythm Graphic */
-    .rhythm-graphic { display: flex; align-items: center; justify-content: space-between; margin: 20px 0; }
-    .node { width: 60px; height: 60px; border-radius: 50%; border: 1px solid var(--border); background: rgba(255,255,255,0.03); display: grid; place-items: center; font-size: 10px; font-weight: 700; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
-    .node.active, .node:hover { background: var(--accent); border-color: transparent; box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
-    .connector { flex-grow: 1; height: 1px; background: var(--border); margin: 0 -5px; }
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 16px; }
+    .grid{ display: grid; gap: 14px; }
+    .two{ grid-template-columns: 1.25fr .75fr; }
+    .three{ grid-template-columns: repeat(3, 1fr); }
+    .card{ background: var(--card); border: 1px solid var(--border); border-radius: 26px; transition: 0.3s; }
+    .card .in{ padding: var(--pad2); }
+    .sep{ height: 1px; background: var(--border); margin: 12px 0; }
 
-    /* Dynamic Counter Styling */
-    .teaser-kpi { font-size: 32px; font-weight: 800; color: var(--accent); display: block; }
-    .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: .2em; color: var(--accent); display: flex; align-items: center; gap: 10px; font-weight: 700; }
-    .line { width: 30px; height: 2px; background: var(--accent); }
+    /* Typography helpers (to remove inline overrides) */
+    .h1{ font-size: clamp(32px, 4vw, 48px); margin: 15px 0; line-height: 1.1; }
+    .p12{ font-size: 12px; }
+    .p13{ font-size: 13px; }
+    .label10{ font-size: 10px; color: var(--muted2); }
+    .label11{ font-size: 11px; font-weight: 700; color: var(--muted2); }
+    .fw700{ font-weight: 700; }
+    .mt10{ margin-top: 10px; }
+    .mt20{ margin-top: 20px; }
+    .mb8{ margin-bottom: 8px; }
+    .list-reset{ list-style: none; padding: 0; margin: 0; }
+    .pl18{ padding-left: 18px; }
+    .grid2{ grid-template-columns: repeat(2, 1fr); }
+    .hero-card{ background: rgba(59, 130, 246, 0.05); border-color: rgba(59, 130, 246, 0.2); }
+    .rhythm-detail{ background: rgba(255,255,255,0.02); padding: 15px; font-size: 13px; border-style: dashed; }
 
-    @media (max-width: 900px) { .two, .three { grid-template-columns: 1fr; } .navlinks { display: none; } }
+    /* Eyebrow */
+    .eyebrow{ font-size: 11px; text-transform: uppercase; letter-spacing: .2em; color: var(--accent); display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .line{ width: 30px; height: 2px; background: var(--accent); }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .two, .three{ grid-template-columns: 1fr; }
+      .navlinks{ display: none; }
+    }
   </style>
 </head>
 
@@ -80,15 +111,19 @@
   <nav class="nav">
     <div class="wrap">
       <a class="brand" href="#top">
-        <div class="logo"><img src="PressRelease_NewExecDirec.png" style="width:24px;border-radius:6px;" alt="Logo"></div>
+        <div class="logo">
+          <img src="PressRelease_NewExecDirec.png" alt="Logo">
+        </div>
         <span>Mark Rickey</span>
       </a>
+
       <div class="navlinks">
         <a href="#work">Work</a>
         <a href="#case-studies">Case Studies</a>
         <a href="#experience">Experience</a>
         <a href="#focus">Focus</a>
       </div>
+
       <div class="cta">
         <a class="btn primary" href="resume.html">Executive Brief</a>
       </div>
@@ -101,44 +136,53 @@
         <div class="grid two">
           <div class="tight">
             <div class="eyebrow"><span class="line"></span> COMMANDER-OPERATOR</div>
-            <h1 style="font-size: clamp(32px, 4vw, 48px); margin: 15px 0;">Building systems that outlast leadership cycles.</h1>
+            <h1 class="h1">Building systems that outlast leadership cycles.</h1>
             <p class="muted">Master of Public Administration and DoD veteran specialized in secure digital transformation, mission alignment, and disciplined execution.</p>
-            <div class="grid" style="grid-template-columns: repeat(2, 1fr); margin-top: 20px;">
+
+            <div class="grid grid2 mt20">
               <div class="kpi">
-                <div class="label" style="font-size: 10px; text-transform: uppercase; color: var(--muted2);">Clearance</div>
-                <div class="value" style="font-weight: 700;">Secret (Active)</div>
+                <div class="label label10">Clearance</div>
+                <div class="value fw700">Secret (Active)</div>
               </div>
               <div class="kpi">
-                <div class="label" style="font-size: 10px; text-transform: uppercase; color: var(--muted2);">MPA Candidate</div>
-                <div class="value" style="font-weight: 700;">Purdue University</div>
+                <div class="label label10">MPA Candidate</div>
+                <div class="value fw700">Purdue University</div>
               </div>
             </div>
           </div>
-          <div class="card" style="background: rgba(59, 130, 246, 0.05); border-color: rgba(59, 130, 246, 0.2);">
+
+          <div class="card hero-card">
             <div class="in tight">
               <h3>The Consultant's Mandate</h3>
               <p class="muted2">Replacing operational friction with clarity.</p>
               <div class="sep"></div>
-              <ul class="list" style="font-size: 13px; list-style: none; padding: 0;">
-                <li style="margin-bottom: 8px;">📊 <strong>Data Intelligence:</strong> AI/ML integration & KPI architecture.</li>
-                <li style="margin-bottom: 8px;">🛡️ <strong>Security First:</strong> Zero-trust & cybersecurity workflows.</li>
+              <ul class="list p13 list-reset">
+                <li class="mb8">📊 <strong>Data Intelligence:</strong> AI/ML integration & KPI architecture.</li>
+                <li class="mb8">🛡️ <strong>Security First:</strong> Zero-trust & cybersecurity workflows.</li>
                 <li>⚙️ <strong>Operating Models:</strong> Institutionalizing disciplined execution.</li>
               </ul>
             </div>
           </div>
+
         </div>
       </div>
     </section>
 
     <section id="work" class="reveal">
       <div class="wrap">
-        <div class="hdr"><div class="eyebrow"><span class="line"></span> METHODOLOGY</div></div>
-        <div class="titleRow"><h2>The Operating Rhythm</h2></div>
-        
-        <div class="grid two" style="margin-top:20px;">
+        <div class="hdr">
+          <div class="eyebrow"><span class="line"></span> METHODOLOGY</div>
+        </div>
+
+        <div class="titleRow">
+          <h2>The Operating Rhythm</h2>
+        </div>
+
+        <div class="grid two mt20">
           <div class="card">
             <div class="in">
-              <p class="muted2" style="font-size: 12px;">Interactive Flow: Hover a stage to view strategy artifacts.</p>
+              <p class="muted2 p12">Interactive Flow: Hover a stage to view strategy artifacts.</p>
+
               <div class="rhythm-graphic">
                 <div class="node active" data-desc="Taking legacy structures and tightening governance standards.">Strategy</div>
                 <div class="connector"></div>
@@ -148,15 +192,17 @@
                 <div class="connector"></div>
                 <div class="node" data-desc="Results that don't need defending and systems that outlast people.">Outcome</div>
               </div>
-              <div id="rhythm-detail" class="card" style="background: rgba(255,255,255,0.02); padding: 15px; font-size: 13px; border-style: dashed;">
+
+              <div id="rhythm-detail" class="card rhythm-detail">
                 <strong>Strategy:</strong> Taking legacy structures and tightening governance standards.
               </div>
             </div>
           </div>
+
           <div class="card">
             <div class="in tight">
               <h3>Signature Capabilities</h3>
-              <ul style="font-size: 13px; padding-left: 18px; color: var(--muted);">
+              <ul class="p13 pl18" style="color: var(--muted);">
                 <li><strong>Gap Analysis:</strong> Diagnostic consulting for civic and defense systems.</li>
                 <li><strong>Process Intelligence:</strong> Lean Six Sigma cycle time reduction (25%).</li>
                 <li><strong>Stakeholder Alignment:</strong> Directing cross-sector coalitions and PPPs.</li>
@@ -164,36 +210,43 @@
             </div>
           </div>
         </div>
+
       </div>
     </section>
 
     <section id="case-studies" class="reveal">
       <div class="wrap">
-        <div class="hdr"><div class="eyebrow"><span class="line"></span> OUTCOMES</div></div>
+        <div class="hdr">
+          <div class="eyebrow"><span class="line"></span> OUTCOMES</div>
+        </div>
+
         <div class="titleRow" style="margin-bottom: 20px;">
           <h2>Proof over promises</h2>
           <a class="btn" href="deepdive_case_study.html">View Deep Dives →</a>
         </div>
+
         <div class="grid three">
           <div class="card">
             <div class="in tight">
               <span class="teaser-kpi" data-val="20">0%</span>
-              <div class="label" style="font-size: 11px; font-weight: 700; color: var(--muted2);">Efficiency Gain</div>
-              <p class="muted" style="font-size: 12px; margin-top: 10px;">Military IT modernization portfolio supporting 10K+ personnel.</p>
+              <div class="label label11">Efficiency Gain</div>
+              <p class="muted p12 mt10">Military IT modernization portfolio supporting 10K+ personnel.</p>
             </div>
           </div>
+
           <div class="card">
             <div class="in tight">
               <span class="teaser-kpi" data-val="35">0%</span>
-              <div class="label" style="font-size: 11px; font-weight: 700; color: var(--muted2);">Time Reduction</div>
-              <p class="muted" style="font-size: 12px; margin-top: 10px;">Cloud-based case management for federal constituent services.</p>
+              <div class="label label11">Time Reduction</div>
+              <p class="muted p12 mt10">Cloud-based case management for federal constituent services.</p>
             </div>
           </div>
+
           <div class="card">
             <div class="in tight">
               <span class="teaser-kpi" data-val="40">0+</span>
-              <div class="label" style="font-size: 11px; font-weight: 700; color: var(--muted2);">Staff Hours Saved</div>
-              <p class="muted" style="font-size: 12px; margin-top: 10px;">Weekly manual workload reduction via workflow digitization.</p>
+              <div class="label label11">Staff Hours Saved</div>
+              <p class="muted p12 mt10">Weekly manual workload reduction via workflow digitization.</p>
             </div>
           </div>
         </div>
@@ -202,34 +255,47 @@
 
     <section id="experience" class="reveal">
       <div class="wrap">
-        <div class="hdr"><div class="eyebrow"><span class="line"></span> EXPERIENCE</div></div>
+        <div class="hdr">
+          <div class="eyebrow"><span class="line"></span> EXPERIENCE</div>
+        </div>
+
         <div class="titleRow" style="margin-bottom: 24px;">
           <h2>Leadership & Execution</h2>
           <a class="btn primary" href="resume.html">View Interactive Brief →</a>
         </div>
+
         <div class="grid three">
-          <div class="card"><div class="in tight">
-            <div class="mini" style="color: var(--accent); font-weight: 700;">CURRENT MISSION</div>
-            <h3 style="margin: 8px 0 4px;">Executive Director</h3>
-            <div class="muted2" style="font-size: 12px;">Historic Downtown Kendallville</div>
-            <div class="sep"></div>
-            <p class="muted" style="font-size: 12px;">Architecting district-wide transformation roadmaps and ROI-driven implementation.</p>
-          </div></div>
-          <div class="card"><div class="in tight">
-            <div class="mini" style="color: var(--accent); font-weight: 700;">6 YEAR TENURE</div>
-            <h3 style="margin: 8px 0 4px;">Project Manager</h3>
-            <div class="muted2" style="font-size: 12px;">U.S. Army — Global Operations</div>
-            <div class="sep"></div>
-            <p class="muted" style="font-size: 12px;">Managed multimillion-dollar portfolios supporting enterprise IT modernization.</p>
-          </div></div>
-          <div class="card"><div class="in tight">
-            <div class="mini" style="color: var(--accent); font-weight: 700;">FEDERAL FELLOW</div>
-            <h3 style="margin: 8px 0 4px;">Congressional Staffer</h3>
-            <div class="muted2" style="font-size: 12px;">U.S. House of Representatives</div>
-            <div class="sep"></div>
-            <p class="muted" style="font-size: 12px;">Drafted policy briefs influencing interagency priorities across DoD and VA.</p>
-          </div></div>
+          <div class="card">
+            <div class="in tight">
+              <div class="mini" style="color: var(--accent); font-weight: 700;">CURRENT MISSION</div>
+              <h3 style="margin: 8px 0 4px;">Executive Director</h3>
+              <div class="muted2 p12">Historic Downtown Kendallville</div>
+              <div class="sep"></div>
+              <p class="muted p12">Architecting district-wide transformation roadmaps and ROI-driven implementation.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="in tight">
+              <div class="mini" style="color: var(--accent); font-weight: 700;">6 YEAR TENURE</div>
+              <h3 style="margin: 8px 0 4px;">Project Manager</h3>
+              <div class="muted2 p12">U.S. Army — Global Operations</div>
+              <div class="sep"></div>
+              <p class="muted p12">Managed multimillion-dollar portfolios supporting enterprise IT modernization.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="in tight">
+              <div class="mini" style="color: var(--accent); font-weight: 700;">FEDERAL FELLOW</div>
+              <h3 style="margin: 8px 0 4px;">Congressional Staffer</h3>
+              <div class="muted2 p12">U.S. House of Representatives</div>
+              <div class="sep"></div>
+              <p class="muted p12">Drafted policy briefs influencing interagency priorities across DoD and VA.</p>
+            </div>
+          </div>
         </div>
+
       </div>
     </section>
 
@@ -237,8 +303,8 @@
       <div class="wrap">
         <div class="sep"></div>
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0;">
-          <span class="muted" style="font-size: 12px;">© <span id="y"></span> Mark L. Rickey • High-Signal Portfolio</span>
-          <a class="btn" href="contact.html">Contact</a> 
+          <span class="muted p12">© <span id="y"></span> Mark L. Rickey • High-Signal Portfolio</span>
+          <a class="btn" href="contact.html">Contact</a>
         </div>
       </div>
     </footer>
@@ -252,7 +318,7 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          
+
           // Trigger KPI counting
           const kpis = entry.target.querySelectorAll('.teaser-kpi');
           kpis.forEach(kpi => {
@@ -263,10 +329,13 @@
                 count += target / 40;
                 kpi.innerText = Math.ceil(count) + (target === 40 ? "+" : "%");
                 setTimeout(update, 25);
-              } else { kpi.innerText = target + (target === 40 ? "+" : "%"); }
+              } else {
+                kpi.innerText = target + (target === 40 ? "+" : "%");
+              }
             };
             update();
           });
+
           revealObserver.unobserve(entry.target);
         }
       });
@@ -293,7 +362,7 @@
       const p = clamp(window.scrollY / (document.documentElement.scrollHeight - window.innerHeight), 0, 1);
       fx.style.transform = `translateY(${-100 * p}px)`;
       fx.style.opacity = (0.9 - (0.4 * p)).toFixed(2);
-      
+
       const h = 210 + (75 * p);
       document.documentElement.style.setProperty("--h1", h.toFixed(1));
       document.documentElement.style.setProperty("--rot", (200 + (220 * p)).toFixed(1) + "deg");
