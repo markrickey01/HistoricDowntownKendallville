@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Contact Mark Rickey — Direct Engagement" />
   <title>Contact — Mark Rickey</title>
-  
+
   <style>
-    :root {
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+    :root{
       --bg: #07070A;
       --accent: #3b82f6;
       --card: rgba(255,255,255,.05);
@@ -16,54 +18,231 @@
       --muted2: rgba(255,255,255,.60);
       --text: rgba(255,255,255,.92);
       --max: 800px;
+
+      --font-display: "Fraunces", ui-serif, Georgia, serif;
+      --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+      --tracking-tight: -0.02em;
+      --tracking-wide: 0.08em;
+
+      /* background vars */
+      --gX: 0px; --gY: 0px; --mx: 50%; --my: 30%; --rot: 200deg;
+      --h1: 215; --h2: 255;
     }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text); font-family: ui-sans-serif, system-ui, sans-serif; line-height: 1.45; overflow-x: hidden; }
+    *{ box-sizing: border-box; }
+    html, body{
+      height: 100%;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.45;
+      overflow-x: hidden;
+      text-rendering: geometricPrecision;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1,h2,h3{
+      font-family: var(--font-display);
+      letter-spacing: var(--tracking-tight);
+    }
+
+    code, pre{ font-family: var(--font-mono); }
 
     /* Interactive Background Logic */
-    .fx { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .9; }
-    .fx::after { content: ""; position: absolute; inset: -20%; background: conic-gradient(from var(--rot, 200deg) at var(--mx, 50%) var(--my, 30%), hsla(215, 88%, 62%, .14), hsla(255, 88%, 62%, .1), hsla(215, 88%, 62%, .14)); mix-blend-mode: screen; filter: blur(26px); }
+    .fx{
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .9;
+    }
+    .fx::before{
+      content:"";
+      position:absolute;
+      inset:-10%;
+      background:
+        radial-gradient(900px 520px at 18% 12%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.92));
+      transform: translate3d(var(--gX), var(--gY), 0);
+    }
+    .fx::after{
+      content:"";
+      position:absolute;
+      inset:-20%;
+      background: conic-gradient(from var(--rot) at var(--mx) var(--my),
+        hsla(var(--h1), 88%, 62%, .14),
+        hsla(var(--h2), 88%, 62%, .10),
+        hsla(var(--h1), 88%, 62%, .14)
+      );
+      mix-blend-mode: screen;
+      filter: blur(26px);
+      transform: translate3d(calc(var(--gX) * -0.6), calc(var(--gY) * -0.6), 0);
+    }
 
     /* Navigation */
-    .nav { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(12px); background: rgba(7, 7, 10, 0.7); border-bottom: 1px solid var(--border); }
-    .nav .wrap { max-width: 1080px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
-    .brand { color: white; text-decoration: none; font-weight: 700; font-size: 14px; }
+    .nav{
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(7, 7, 10, 0.70);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav .wrap{
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand{
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
 
     /* Layout */
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 60px 20px; }
-    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal.active { opacity: 1; transform: translateY(0); }
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 60px 20px; }
 
-    .header { margin-bottom: 40px; }
-    h1 { font-size: 42px; letter-spacing: -1.5px; margin: 0 0 10px; }
-    .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: .2em; color: var(--accent); font-weight: 700; display: block; margin-bottom: 10px; }
+    .reveal{
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .header{ margin-bottom: 40px; }
+    h1{ font-size: 42px; letter-spacing: -1.5px; margin: 0 0 10px; }
+    .eyebrow{
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+      color: var(--accent);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 10px;
+      font-family: var(--font-body);
+    }
+
+    .muted{ color: var(--muted); }
+    .muted2{ color: var(--muted2); }
 
     /* Interaction Cards */
-    .contact-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 32px; transition: 0.3s; }
-    .card:hover { border-color: var(--accent); background: rgba(59, 130, 246, 0.03); }
-    
-    .btn-large { display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: white; margin-bottom: 12px; padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 16px; transition: 0.3s; }
-    .btn-large:hover { background: var(--accent); border-color: transparent; transform: scale(1.02); }
-    .btn-label { font-weight: 700; font-size: 18px; }
-    .btn-sub { font-size: 12px; color: var(--muted2); }
-    .btn-large:hover .btn-sub { color: white; opacity: 0.8; }
+    .contact-grid{ display: grid; grid-template-columns: 1fr; gap: 20px; }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      transition: 0.3s;
+    }
+    .card:hover{
+      border-color: rgba(59,130,246,0.55);
+      background: rgba(59, 130, 246, 0.03);
+      transform: translateY(-2px);
+    }
 
-    .protocol-list { list-style: none; padding: 0; font-size: 14px; color: var(--muted); }
-    .protocol-list li { margin-bottom: 12px; display: flex; gap: 12px; align-items: flex-start; }
-    .protocol-list li::before { content: "→"; color: var(--accent); font-weight: 900; }
+    .btn-large{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: white;
+      margin-bottom: 12px;
+      padding: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: 0.3s;
+      gap: 14px;
+    }
+    .btn-large:hover{
+      background: var(--accent);
+      border-color: transparent;
+      transform: translateY(-2px);
+    }
 
-    footer { text-align: center; padding: 40px 0; font-size: 12px; color: var(--muted2); }
+    .btn-label{
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: var(--tracking-tight);
+      font-family: var(--font-display);
+    }
+
+    .btn-sub{
+      font-size: 12px;
+      color: var(--muted2);
+      font-family: var(--font-body);
+      letter-spacing: 0.02em;
+    }
+    .btn-large:hover .btn-sub{ color: rgba(255,255,255,0.92); opacity: 0.9; }
+
+    .protocol-list{
+      list-style: none;
+      padding: 0;
+      font-size: 14px;
+      color: var(--muted);
+      margin: 14px 0 0;
+    }
+    .protocol-list li{
+      margin-bottom: 12px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+    .protocol-list li::before{
+      content: "→";
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    footer{
+      text-align: center;
+      padding: 40px 0 0;
+      font-size: 12px;
+      color: var(--muted2);
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 720px){
+      .wrap{ padding: 44px 18px; }
+      h1{ font-size: 36px; }
+      .card{ padding: 22px; }
+      .btn-label{ font-size: 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .reveal{ transition: none; }
+      .card, .btn-large{ transition: none; }
+    }
   </style>
 </head>
+
 <body>
   <div class="fx" id="fx"></div>
 
   <nav class="nav">
     <div class="wrap">
       <a class="brand" href="index.html">← MARK RICKEY</a>
-      <div style="font-size: 11px; color: var(--muted2); text-transform: uppercase; letter-spacing: 1px;">Engagement Protocol</div>
+      <div style="font-size: 11px; color: var(--muted2); text-transform: uppercase; letter-spacing: var(--tracking-wide); font-weight: 700;">
+        Engagement Protocol
+      </div>
     </div>
   </nav>
 
@@ -81,20 +260,21 @@
             <div class="btn-label">markrickey01@gmail.com</div>
             <div class="btn-sub">Primary channel for briefs and proposals</div>
           </div>
-          <span>↗</span>
+          <span aria-hidden="true">↗</span>
         </a>
-        <a href="https://www.linkedin.com/in/markrickey01" target="_blank" class="btn-large">
+
+        <a href="https://www.linkedin.com/in/markrickey01" target="_blank" rel="noopener" class="btn-large">
           <div>
             <div class="btn-label">LinkedIn Professional</div>
             <div class="btn-sub">Engagement and networking</div>
           </div>
-          <span>↗</span>
+          <span aria-hidden="true">↗</span>
         </a>
       </div>
 
       <div class="card reveal" style="transition-delay: 0.2s;">
         <h3 style="margin-top: 0;">Inquiry Framework</h3>
-        <p class="muted2" style="font-size: 13px;">To ensure a productive initial conversation, please consider including:</p>
+        <p class="muted2" style="font-size: 13px; margin: 0;">To ensure a productive initial conversation, please consider including:</p>
         <ul class="protocol-list">
           <li><strong>The Objective:</strong> What specific outcome is the organization currently failing to hit?</li>
           <li><strong>The Constraints:</strong> What are the primary blockers (Technical, Political, or Resource-based)?</li>
@@ -103,10 +283,12 @@
       </div>
 
       <div class="card reveal" style="transition-delay: 0.3s; background: rgba(59, 130, 246, 0.05);">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 14px;">
           <div>
             <div class="eyebrow" style="margin: 0;">Quick Bio</div>
-            <p style="margin: 8px 0 0; font-size: 13px; color: var(--muted);">Master of Public Administration (MPA) and DoD Veteran with an active Secret Clearance. Specialized in secure digital transformation and civic operating models.</p>
+            <p style="margin: 8px 0 0; font-size: 13px; color: var(--muted);">
+              Master of Public Administration (MPA) and DoD Veteran with an active Secret Clearance. Specialized in secure digital transformation and civic operating models.
+            </p>
           </div>
         </div>
       </div>
@@ -123,19 +305,34 @@
     // Reveal Elements
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
+        if (entry.isIntersecting) observer.unobserve(entry.target);
         if (entry.isIntersecting) entry.target.classList.add('active');
       });
     }, { threshold: 0.1 });
+
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Interactive Background (Mouse drift)
+    // Interactive Background (Mouse drift + subtle parallax)
+    const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+
     window.addEventListener("pointermove", (e) => {
-      const x = (e.clientX / window.innerWidth) * 100;
-      const y = (e.clientY / window.innerHeight) * 100;
-      document.documentElement.style.setProperty("--mx", x + "%");
-      document.documentElement.style.setProperty("--my", y + "%");
-      document.documentElement.style.setProperty("--rot", (x + y) + "deg");
-    });
+      const mx = e.clientX / window.innerWidth;
+      const my = e.clientY / window.innerHeight;
+
+      document.documentElement.style.setProperty("--mx", (mx * 100).toFixed(2) + "%");
+      document.documentElement.style.setProperty("--my", (my * 100).toFixed(2) + "%");
+      document.documentElement.style.setProperty("--rot", (200 + ((mx + my) * 180)).toFixed(1) + "deg");
+
+      document.documentElement.style.setProperty("--gX", ((mx - 0.5) * 22).toFixed(2) + "px");
+      document.documentElement.style.setProperty("--gY", ((my - 0.5) * 22).toFixed(2) + "px");
+    }, { passive: true });
+
+    window.addEventListener("scroll", () => {
+      const doc = document.documentElement;
+      const max = (doc.scrollHeight - window.innerHeight) || 1;
+      const p = clamp(window.scrollY / max, 0, 1);
+      doc.style.setProperty("--gY", (-80 * p).toFixed(2) + "px");
+    }, { passive: true });
   </script>
 </body>
 </html>
