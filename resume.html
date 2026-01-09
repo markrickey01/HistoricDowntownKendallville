@@ -107,7 +107,7 @@
       display:inline-flex;
       align-items:center;
       gap:8px;
-      transition: .25s;
+      transition: transform .25s cubic-bezier(0.16, 1, 0.3, 1), background .25s ease, border-color .25s ease;
     }
     .btn:hover{ background: rgba(255,255,255,.10); transform: translateY(-1px); }
     .btn.primary{ background: var(--accent); border-color: transparent; color: #fff; font-weight: 600; }
@@ -135,8 +135,8 @@
 
     /* KPI Cards */
     .kpi-row{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
-    .kpi-card{ background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 18px; padding: 20px; text-align: center; transition: 0.3s; }
-    .kpi-card:hover{ transform: translateY(-4px); border-color: var(--accent); }
+    .kpi-card{ background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 18px; padding: 20px; text-align: center; transition: transform .35s cubic-bezier(0.16, 1, 0.3, 1), border-color .35s ease, background .35s ease; position: relative; overflow: hidden; }
+    .kpi-card:hover{ transform: translateY(-5px); border-color: rgba(59,130,246,.55); background: rgba(59,130,246,.04); }
     .kpi-num{ display: block; font-size: 28px; font-weight: 700; color: #fff; }
     .kpi-label{ font-size: 10px; color: var(--muted2); margin-top: 6px; display: block; font-weight: 700; }
 
@@ -148,7 +148,7 @@
 
     /* Experience Cards */
     .section{ border-top: 1px solid var(--border); padding: 24px 0; }
-    h2{ margin:0 0 16px; font-size: 12px; color: var(--accent); }
+    h2{ margin:0 0 16px; font-size: 12px; color: var(--accent); letter-spacing: var(--tracking-wide); text-transform: uppercase; font-weight: 700; }
     .card{ background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 18px; padding: 20px; margin-bottom: 12px; }
     .job{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 10px; gap: 12px; }
     .job h3{ margin:0; font-size: 16px; }
@@ -171,6 +171,116 @@
     .flow-node{ padding: 6px 10px; background: rgba(255,255,255,.05); border: 1px solid var(--border); border-radius: 8px; font-size: 11px; font-weight: 700; }
     .arrow{ color: var(--accent); font-weight: 900; }
 
+    /* ===== NEW: Certifications & Skills tiles + hover brief ===== */
+    .skill-tiles{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .skill-tile{
+      appearance: none;
+      -webkit-appearance: none;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px 12px;
+      text-align: left;
+      cursor: pointer;
+      transition: transform .25s cubic-bezier(0.16, 1, 0.3, 1), border-color .25s ease, background .25s ease, box-shadow .25s ease;
+      position: relative;
+      overflow: hidden;
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .skill-tile::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius: inherit;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s ease;
+      background:
+        radial-gradient(380px 200px at 20% 10%, rgba(59,130,246,.22), transparent 60%),
+        radial-gradient(280px 180px at 85% 90%, rgba(255,255,255,.06), transparent 60%);
+    }
+
+    .skill-tile .t{
+      display:flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .skill-tile .name{
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .skill-tile .sub{
+      font-size: 12px;
+      color: var(--muted2);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .skill-tile .chev{
+      opacity: .7;
+      transform: translateY(-1px);
+      font-weight: 900;
+      color: var(--muted2);
+      transition: transform .25s ease, color .25s ease, opacity .25s ease;
+      flex: 0 0 auto;
+    }
+
+    .skill-tile:hover,
+    .skill-tile.active{
+      transform: translateY(-3px);
+      border-color: rgba(59,130,246,.55);
+      background: rgba(59,130,246,.04);
+      box-shadow: 0 14px 34px rgba(0,0,0,.35);
+    }
+    .skill-tile:hover::before,
+    .skill-tile.active::before{ opacity: 1; }
+    .skill-tile:hover .chev,
+    .skill-tile.active .chev{
+      transform: translateX(2px);
+      color: rgba(255,255,255,.85);
+      opacity: .95;
+    }
+
+    .skill-brief{
+      border: 1px dashed rgba(255,255,255,.18);
+      background: rgba(255,255,255,.02);
+      border-radius: 16px;
+      padding: 14px 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .skill-brief strong{
+      color: var(--text);
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      font-size: 11px;
+      font-family: var(--font-body);
+    }
+    .skill-brief .meta{
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--muted2);
+    }
+
     /* Footer */
     .foot{
       margin-top: 16px;
@@ -184,6 +294,11 @@
       .header, .kpi-row, .twoCol{ grid-template-columns: 1fr; }
       .in{ padding: 22px; }
       .job{ flex-direction: column; align-items: flex-start; }
+      .skill-tiles{ grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .skill-tile, .kpi-card, .btn{ transition: none !important; }
     }
 
     @media print{
@@ -193,6 +308,8 @@
       .card{ border: 1px solid #ddd; }
       .kpi-card{ border: 1px solid #ddd; }
       .btn{ display:none; }
+      .skill-tile{ border: 1px solid #ddd; background: #fff; box-shadow:none; }
+      .skill-brief{ border: 1px solid #ddd; background: #fff; }
       a{ color:#000; text-decoration:none; }
     }
   </style>
@@ -287,13 +404,81 @@
 
           <section class="section">
             <h2>Certifications & Skills</h2>
+
             <div class="card" style="height: 100%;">
-              <span class="pill">PMP/Agile</span>
-              <span class="pill">Cloud Architect (Google)</span>
-              <span class="pill">Change Mgmt (CCMP)</span>
-              <span class="pill">Lean Six Sigma</span>
-              <span class="pill">Zero-Trust</span>
-              <span class="pill">Data Analytics</span>
+              <div class="skill-tiles" id="skill-tiles">
+                <button class="skill-tile active" type="button"
+                  data-title="PMP / Agile"
+                  data-desc="Disciplined delivery under ambiguity: scope control, sprint cadence, RAID/issue management, stakeholder reporting, and execution that survives turnover."
+                  data-meta="Use-case: Portfolio delivery + governance rhythm">
+                  <div class="t">
+                    <div class="name">PMP / Agile</div>
+                    <div class="sub">Delivery governance</div>
+                  </div>
+                  <div class="chev">↗</div>
+                </button>
+
+                <button class="skill-tile" type="button"
+                  data-title="Cloud Architect (Google)"
+                  data-desc="Cloud-first operating models: identity-aware access, secure storage patterns, automation-ready workflows, and measurable service outcomes."
+                  data-meta="Use-case: Modernization + scalable workflows">
+                  <div class="t">
+                    <div class="name">Cloud Architect (Google)</div>
+                    <div class="sub">Secure cloud patterns</div>
+                  </div>
+                  <div class="chev">↗</div>
+                </button>
+
+                <button class="skill-tile" type="button"
+                  data-title="Change Management (CCMP)"
+                  data-desc="Adoption is the mission: comms plans, training, reinforcement loops, resistance handling, and leadership alignment—so the system actually gets used."
+                  data-meta="Use-case: Adoption + risk reduction">
+                  <div class="t">
+                    <div class="name">Change Mgmt (CCMP)</div>
+                    <div class="sub">Adoption + training</div>
+                  </div>
+                  <div class="chev">↗</div>
+                </button>
+
+                <button class="skill-tile" type="button"
+                  data-title="Lean Six Sigma"
+                  data-desc="Cycle-time reduction through clear measurement: map the process, kill waste, tighten handoffs, and lock standards into the operating rhythm."
+                  data-meta="Use-case: Throughput + quality control">
+                  <div class="t">
+                    <div class="name">Lean Six Sigma</div>
+                    <div class="sub">Cycle time reduction</div>
+                  </div>
+                  <div class="chev">↗</div>
+                </button>
+
+                <button class="skill-tile" type="button"
+                  data-title="Zero-Trust"
+                  data-desc="Assume breach: least privilege, strong identity, device posture, and segmented access—so modern systems are resilient by default."
+                  data-meta="Use-case: Security posture + compliance">
+                  <div class="t">
+                    <div class="name">Zero-Trust</div>
+                    <div class="sub">Security-first workflows</div>
+                  </div>
+                  <div class="chev">↗</div>
+                </button>
+
+                <button class="skill-tile" type="button"
+                  data-title="Data Analytics"
+                  data-desc="Decision-grade reporting: KPI architecture, automated dashboards, exception-based oversight, and board-ready narratives that don’t need defending."
+                  data-meta="Use-case: Executive reporting + accountability">
+                  <div class="t">
+                    <div class="name">Data Analytics</div>
+                    <div class="sub">KPI + insight</div>
+                  </div>
+                  <div class="chev">↗</div>
+                </button>
+              </div>
+
+              <div id="skill-brief" class="skill-brief" aria-live="polite">
+                <strong>PMP / Agile:</strong>
+                Disciplined delivery under ambiguity: scope control, sprint cadence, RAID/issue management, stakeholder reporting, and execution that survives turnover.
+                <div class="meta">Use-case: Portfolio delivery + governance rhythm</div>
+              </div>
             </div>
           </section>
         </div>
@@ -437,6 +622,34 @@
     }, { threshold: 0.5 });
 
     document.querySelectorAll('.kpi-num, .bar-fill').forEach(el => observer.observe(el));
+
+    // ===== NEW: Certifications & Skills hover/brief behavior =====
+    const tiles = Array.from(document.querySelectorAll('.skill-tile'));
+    const brief = document.getElementById('skill-brief');
+
+    function setBrief(btn){
+      if (!btn || !brief) return;
+      const title = btn.getAttribute('data-title') || btn.innerText.trim();
+      const desc  = btn.getAttribute('data-desc') || "";
+      const meta  = btn.getAttribute('data-meta') || "";
+      brief.innerHTML = `<strong>${title}:</strong> ${desc}${meta ? `<div class="meta">${meta}</div>` : ""}`;
+    }
+
+    function activate(btn){
+      tiles.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      setBrief(btn);
+    }
+
+    tiles.forEach(btn => {
+      btn.addEventListener('mouseenter', () => activate(btn));
+      btn.addEventListener('focus', () => activate(btn));
+      btn.addEventListener('click', () => activate(btn));
+    });
+
+    // Ensure initial state is correct even if markup changes
+    const initial = tiles.find(b => b.classList.contains('active')) || tiles[0];
+    if (initial) setBrief(initial);
   </script>
 </body>
 </html>
